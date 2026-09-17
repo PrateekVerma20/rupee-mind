@@ -1,13 +1,14 @@
 import { createClient } from "@supabase/supabase-js";
 
-// Real sender addresses confirmed from the user's own Gmail, plus a few
-// best-guess entries for GPay/PhonePe marked below — these are NOT confirmed
-// and should be verified against real alert emails and corrected if wrong.
+// Domain-level matching — Gmail's from: operator matches ANY sender
+// containing this domain, so we don't need every exact address, just the
+// domain. This casts a wide net; the amount-parsing step below still
+// discards anything that isn't a real transaction, so broader is safe here.
 const BANK_SENDER_QUERY =
-"from:(alerts@axis.bank.in OR credit_cards@icici.bank.in OR cbsalerts.sbi@alerts.sbi.bank.in OR " +
-"hdfcbanksmartstatement@hdfcbank.bank.in OR noreply@groww.in OR googleplay-noreply@google.com OR " +
-// best-guess, unverified — replace with real addresses once confirmed:
-"googlepay-noreply@google.com OR payments-noreply@google.com OR noreply@phonepe.com OR transaction@phonepe.com)";
+"from:(axis.bank.in OR icici.bank.in OR sbi.bank.in OR hdfcbank.bank.in OR kotak.com OR " +
+"groww.in OR paytm.com OR paytmbank.com OR phonepe.com OR " +
+// mutual fund / investment statement sources — worth adding if you invest via these:
+"camsonline.com OR kfintech.com OR zerodha.com OR kuvera.in)";
 
 const AMOUNT_REGEX = /(?:INR|Rs\.?)\s?([\d,]+(?:\.\d{1,2})?)/i;
 const MERCHANT_REGEX = /(?:at|to|towards)\s+([A-Za-z0-9 &._-]{3,40})/i;

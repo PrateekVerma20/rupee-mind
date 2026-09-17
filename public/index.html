@@ -20,8 +20,8 @@
     <div class="card" id="data-panel" style="display:none;"><div class="card-head"><h2>Transactions</h2><div style="display:flex;gap:8px;"><button class="btn" id="sync-btn">Sync Gmail</button><button class="btn ghost" id="logout-btn">Sign out</button></div></div><div id="status" class="status"></div><div id="feed"></div></div>
   </div>
   <script>
-    const SUPABASE_URL="https://otnjtrupjqhlgjpunqvu.supabase.co/rest/v1/";
-    const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90bmp0cnVwanFobGdqcHVucXZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0NzM4OTgsImV4cCI6MjEwNTA0OTg5OH0.ywmOJYzKZyGk8VbifBAuHYTkLscEHfRGREomngbHIN0";
+    const SUPABASE_URL = "https://otnjtrupjqhlgjpunqvu.supabase.co/rest/v1/";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90bmp0cnVwanFobGdqcHVucXZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0NzM4OTgsImV4cCI6MjEwNTA0OTg5OH0.ywmOJYzKZyGk8VbifBAuHYTkLscEHfRGREomngbHIN0";
     const sb = window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
     let currentSession=null;
     function setStatus(text,isError){const el=document.getElementById("status");el.textContent=text;el.classList.toggle("show",!!text);el.classList.toggle("error",!!isError)}

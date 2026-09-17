@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       }));
 
       const prompt =
-        `Categorize each transaction into exactly one of: Food, Transport, Groceries, Subscriptions, Bills, Shopping, Travel, Other. ` +
+        `Categorize each transaction into exactly one of: Food, Transport, Groceries, Subscriptions, Bills, Shopping, Travel, Investments, Other ` +
         `Mark isSubscription true if it's a recurring subscription/membership charge. ` +
         `Respond with ONLY JSON in the shape {"results":[{"id":"...","category":"...","isSubscription":true}]}\n\n` +
         `Transactions:\n${JSON.stringify(payload)}`;
